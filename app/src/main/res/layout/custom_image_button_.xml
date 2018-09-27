@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/good_moment"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="400dp">
+
+    <Button
+        android:id="@+id/addEvent_id"
+        android:textSize="20dp"
+        android:text="Add Event "
+        android:textAllCaps="false"
+        android:background="#09d6f1"
+        android:textColor="#fff"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+     <Button
+        android:id="@+id/showEvent_id"
+        android:textSize="20dp"
+        android:text="Show Event "
+         android:textAllCaps="false"
+         android:layout_marginTop="20dp"
+        android:background="#09d6f1"
+        android:textColor="#fff"
+         android:layout_gravity="center"
+         android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+     <Button
+        android:id="@+id/addMoment_id"
+        android:textSize="20dp"
+         android:textAllCaps="false"
+         android:layout_marginTop="20dp"
+        android:text="Add Moment "
+        android:background="#09d6f1"
+        android:textColor="#fff"
+         android:layout_gravity="center"
+         android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+     <Button
+        android:id="@+id/showMoment_id"
+        android:textSize="20dp"
+         android:textAllCaps="false"
+         android:layout_marginTop="20dp"
+        android:text="Show Moment "
+        android:background="#09d6f1"
+        android:textColor="#fff"
+         android:layout_gravity="center"
+         android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+     <Button
+        android:id="@+id/addExpense_id"
+        android:textSize="20dp"
+         android:textAllCaps="false"
+         android:layout_marginTop="20dp"
+        android:text="Add Expense "
+        android:background="#09d6f1"
+        android:textColor="#fff"
+         android:layout_gravity="center"
+         android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+     <Button
+        android:id="@+id/showExpense_id"
+        android:textSize="20dp"
+        android:text="Show Expense "
+         android:textAllCaps="false"
+         android:layout_marginTop="20dp"
+        android:background="#09d6f1"
+        android:textColor="#fff"
+         android:layout_gravity="center"
+         android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

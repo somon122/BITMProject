@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/galley_Show_id"
+        android:orderInCategory="100"
+        android:title="Moment Gallery Show "
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/travel_events_Show_id"
+        android:orderInCategory="100"
+        android:title="Travel Events Show "
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/expenseRecordShow_id"
+        android:orderInCategory="100"
+        android:title="Expense Record Show "
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/logOut_id"
+        android:orderInCategory="100"
+        android:title="LogOut"
+        app:showAsAction="never" />
+</menu>

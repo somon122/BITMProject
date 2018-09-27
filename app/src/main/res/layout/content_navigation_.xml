@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Navigation_Activity"
+    android:background="#0c3cc9"
+    tools:showIn="@layout/app_bar_navigation_">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:onClick="TravelEvent"
+                    android:src="@drawable/family"
+                    android:layout_margin="10dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp" />
+                <TextView
+                    android:textColor="#fff"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:text="Travel Event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:onClick="AddMoment"
+                    android:src="@drawable/good_moment"
+                    android:layout_margin="10dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp" />
+                <TextView
+                    android:textColor="#fff"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:text="Add Moment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                   android:onClick="AddExpense"
+                    android:src="@drawable/expense"
+                    android:layout_margin="10dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp" />
+                <TextView
+                    android:textColor="#fff"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:text="Add Expense "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:onClick="Weather"
+                    android:src="@drawable/weather"
+                    android:layout_margin="10dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp" />
+                <TextView
+                    android:textColor="#fff"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:text=" Weather Update "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:layout_marginBottom="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:onClick="Map"
+                    android:src="@drawable/map"
+                    android:layout_margin="10dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp" />
+                <TextView
+                    android:textColor="#fff"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:text=" Map "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#565353"
+    android:orientation="vertical"
+    tools:context=".ExpenseRecord.ExpenseRecord_Activity">
+
+
+
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="Expense Entry "
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/expenseDetails_id"
+        android:textColor="#030303"
+        android:paddingLeft="5dp"
+        android:textSize="20sp"
+        android:background="#52b1f1"
+        android:inputType="text"
+        android:layout_margin="10dp"
+        android:hint="Expense Details"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+    <EditText
+        android:id="@+id/expenseAmount_id"
+        android:textColor="#030303"
+        android:paddingLeft="5dp"
+        android:textSize="20sp"
+        android:paddingRight="5dp"
+        android:background="#52b1f1"
+        android:inputType="number"
+        android:layout_margin="10dp"
+        android:hint="Expense Amount in TK"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+    <Button
+        android:id="@+id/expenseEntryRecordButton_id"
+        android:textAllCaps="false"
+        android:textColor="#030303"
+        android:paddingLeft="5dp"
+        android:background="#52b1f1"
+        android:text=" Entry Record "
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+</LinearLayout>

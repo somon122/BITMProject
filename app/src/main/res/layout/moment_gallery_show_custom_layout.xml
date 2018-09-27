@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#06c9d7"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+        <TextView
+            android:layout_marginRight="20dp"
+            android:id="@+id/momentShowDate_id"
+            android:gravity="end"
+            android:textColor="#faf8f8"
+            android:textSize="20sp"
+            android:text="9 Aug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:id="@+id/momentDetailsShow_id"
+            android:gravity="center"
+            android:textColor="#faf8f8"
+            android:textSize="25sp"
+            android:text="Moment Details "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+       <ImageView
+           android:id="@+id/momentImageViewShow_id"
+           android:layout_marginTop="20dp"
+           android:src="@mipmap/ic_launcher"
+           android:layout_gravity="center"
+           android:layout_width="350dp"
+           android:layout_height="300dp" />
+
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#0e5c24"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
+
+
+
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:gravity="center"
+        android:text="Data Update"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="25sp"
+        android:textColor="#409c99"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <EditText
+        android:id="@+id/update_travelDestination_id"
+        android:textColor="#030303"
+        android:paddingLeft="5dp"
+        android:inputType="text"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
+    <EditText
+        android:id="@+id/update_travelEstimatedBudget_id"
+        android:textColor="#030303"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:inputType="number"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <EditText
+        android:id="@+id/update_travelFromDate_id"
+        android:textColor="#030303"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:inputType="date"
+        android:layout_margin="10dp"
+        android:hint="From Date"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <EditText
+        android:id="@+id/update_travelToDate_id"
+        android:textColor="#030303"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:inputType="date"
+        android:layout_margin="10dp"
+        android:hint="To Date"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
+
+    <Button
+        android:id="@+id/update_createEvent_id"
+        android:textSize="20sp"
+        android:text="Update Data "
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp" />
+
+
+
+
+
+</LinearLayout>

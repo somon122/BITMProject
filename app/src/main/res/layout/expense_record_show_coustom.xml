@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#33B5E5"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<TextView
+    android:id="@+id/expenseRecordDateShow_id"
+    android:textSize="20sp"
+    android:textColor="#ffff"
+    android:gravity="end"
+    android:paddingRight="20dp"
+    android:paddingTop="10dp"
+    android:text="20/10/1993"
+    android:layout_width="match_parent"
+    android:layout_height="50dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/expenseRecordDetailsShow_id"
+            android:textSize="20sp"
+            android:textColor="#ffff"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:text="Fish"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/expenseRecordAmountShow_id"
+            android:textSize="20sp"
+            android:textColor="#ffff"
+            android:gravity="start"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="5dp"
+            android:text="500 Tk"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp" />
+
+
+
+    </LinearLayout>
+
+    <View
+        android:background="#fff"
+       android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
+
+
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#036981"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:textColor="#000"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="Near By "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:onClick="Cafe"
+        android:id="@+id/nearByCafeButton_id"
+        android:focusableInTouchMode="true"
+        android:layout_margin="10dp"
+        android:layout_marginTop="30sp"
+        android:textAllCaps="false"
+        android:text="Cafe"
+        android:background="#37d5ea"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+
+    <Button
+        android:onClick="Restaurant"
+        android:id="@+id/nearByRestaurantButton_id"
+        android:textAllCaps="false"
+        android:focusableInTouchMode="true"
+        android:layout_margin="10dp"
+        android:layout_marginTop="30sp"
+        android:text="Restaurant"
+        android:background="#37d5ea"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+
+    <Button
+        android:onClick="ATM"
+        android:id="@+id/nearByATM_Button_id"
+        android:focusableInTouchMode="true"
+        android:layout_margin="10dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="30sp"
+        android:text="ATM"
+        android:background="#37d5ea"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+    <Button
+        android:onClick="BANK"
+        android:id="@+id/nearByBankButton_id"
+        android:focusableInTouchMode="true"
+        android:layout_margin="10dp"
+        android:layout_marginTop="30sp"
+        android:text="BANK"
+        android:background="#37d5ea"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+</LinearLayout>

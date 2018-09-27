@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#c4b6b6"
+    android:layout_height="match_parent"
+    tools:context=".Moment.MomentGalleryActivity">
+
+    <Button
+        android:id="@+id/saveMomentButton_id"
+        android:layout_margin="10dp"
+        android:layout_gravity="end"
+        android:padding="5dp"
+        android:background="#0fdbed"
+        android:textColor="#fff"
+        android:text="Save Moment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/momentDetails_id"
+        android:hint="Moment Details"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/momentImage_id"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/camara"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="300dp" />
+    <Button
+        android:onClick="TakePhoto"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="Take Photo "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
