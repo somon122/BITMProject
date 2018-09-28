@@ -1,9 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
     android:layout_height="match_parent"
-    tools:context=".NearBy.MapsActivity" />
+    tools:context=".NearBy.MapsActivity">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_weight="9"
+        android:layout_height="0dp"
+        >
+
+    </fragment>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        >
+
+        <Button
+            android:id="@+id/Cafe_id"
+            android:background="#05e6ed"
+            android:textColor="#fff"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:onClick="Cafe"
+            android:text="Cafe" />
+
+        <Button
+            android:id="@+id/restaurant_id"
+            android:background="#05e6ed"
+            android:textColor="#fff"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:onClick="Restaurant"
+            android:text="Restaurant" />
+
+        <Button
+            android:id="@+id/aTM_id"
+            android:layout_width="0dp"
+            android:background="#05e6ed"
+            android:textColor="#fff"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:onClick="ATM"
+            android:text="ATM" />
+
+        <Button
+            android:id="@+id/bank_id"
+            android:layout_width="0dp"
+            android:background="#05e6ed"
+            android:textColor="#fff"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:onClick="Bank"
+            android:text="Bank" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+

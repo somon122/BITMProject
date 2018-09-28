@@ -1,6 +1,7 @@
 package com.example.user.bitm_project.Moment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,8 +41,8 @@ public class Gallery_Show_Activity extends AppCompatActivity {
 
     String uId;
     String eventId;
-
-
+    Intent intent = null,chooser = null;
+    MomentGallery momentGallery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class Gallery_Show_Activity extends AppCompatActivity {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
 
-                    MomentGallery momentGallery =snapshot.getValue(MomentGallery.class);
+                    momentGallery =snapshot.getValue(MomentGallery.class);
                     momentGalleryList.add(momentGallery);
                 }
                 adepter = new GalleryAdepter(getApplicationContext(),momentGalleryList);
@@ -102,6 +103,22 @@ public class Gallery_Show_Activity extends AppCompatActivity {
                                 .removeValue();
                         startActivity(new Intent(Gallery_Show_Activity.this,Gallery_Show_Activity.class));
                         finish();
+                    }
+                });
+
+                shareButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Uri imageUri = Uri.parse(momentGallery.getImageView());
+                        intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("image/*");
+                        intent.putExtra(Intent.EXTRA_STREAM,imageUri);
+                        intent.putExtra(Intent.EXTRA_TEXT,"Hey I have attached this image");
+                        chooser = Intent.createChooser(intent,"Send Image");
+                        startActivity(chooser);
+
+
                     }
                 });
 
