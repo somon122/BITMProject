@@ -2,6 +2,7 @@ package com.example.user.bitm_project.Moment;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ import com.example.user.bitm_project.TravelEvent.EventShowActivity;
 import com.example.user.bitm_project.TravelEvent.TravelEvent_Activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +41,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
@@ -55,6 +59,7 @@ public class MomentGalleryActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference rootReference;
+    private StorageReference mStoreRef;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private Uri selectImage_Uri;
@@ -77,6 +82,7 @@ public class MomentGalleryActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         rootReference = database.getReference("UserInfo");
+        mStoreRef = FirebaseStorage.getInstance().getReference("ImageUploads");
         rootReference.keepSynced(true);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -157,6 +163,25 @@ public class MomentGalleryActivity extends AppCompatActivity {
                            Toast.makeText(MomentGalleryActivity.this, "Moment Gallery Save Field "+"\n"+e.getMessage(), Toast.LENGTH_SHORT).show();
                        }
                    });
+
+
+
+                   //--------------------------
+
+                if (selectImage_Uri != null) {
+                    StorageReference fileRef = mStoreRef.child(System.currentTimeMillis()
+                            + "." + getFile(selectImage_Uri));
+                    fileRef.putFile(selectImage_Uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(MomentGalleryActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                }
+
+
+                ///-------------------------
 
 
             }catch (Exception e)
@@ -304,4 +329,13 @@ public class MomentGalleryActivity extends AppCompatActivity {
         return Uri.parse(path);
     }
 */
-}
+
+    private String getFile (Uri uri){
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+
+       }
+
+       
+  }
