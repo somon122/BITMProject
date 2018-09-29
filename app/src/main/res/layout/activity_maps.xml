@@ -8,6 +8,38 @@
     android:weightSum="10"
     android:layout_height="match_parent"
     tools:context=".NearBy.MapsActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#0be1f9"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/searchBoxID"
+            android:layout_width="265dp"
+            android:background="#0be1f9"
+            android:textColor="#ffff"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint="Write any place Name"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            />
+
+        <Button
+            android:id="@+id/searchBtnID"
+            android:background="#0be1f9"
+            android:textColor="#ffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="Search"
+            android:textAllCaps="false"
+            />
+
+
+
+    </LinearLayout>
+
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -27,49 +59,54 @@
         android:layout_height="0dp"
         >
 
-        <Button
-            android:id="@+id/Cafe_id"
-            android:background="#05e6ed"
-            android:textColor="#fff"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="start"
-            android:layout_weight="1"
-            android:onClick="Cafe"
-            android:text="Cafe" />
 
         <Button
-            android:id="@+id/restaurant_id"
-            android:background="#05e6ed"
-            android:textColor="#fff"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="start"
+            android:id="@+id/cafeBtnID"
             android:layout_weight="1"
-            android:onClick="Restaurant"
-            android:text="Restaurant" />
+            android:background="#0be1f9"
+            android:textColor="#ffff"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cafe"
+            android:onClick="onClick"
+            android:textAllCaps="false"
+            />
 
         <Button
-            android:id="@+id/aTM_id"
-            android:layout_width="0dp"
-            android:background="#05e6ed"
-            android:textColor="#fff"
-            android:layout_height="50dp"
-            android:layout_gravity="start"
+            android:id="@+id/resturentBtnID"
             android:layout_weight="1"
-            android:onClick="ATM"
-            android:text="ATM" />
+            android:layout_width="0dp"
+            android:background="#0be1f9"
+            android:textColor="#ffff"
+            android:layout_height="wrap_content"
+            android:text="Restaurant"
+            android:textSize="13sp"
+            android:onClick="onClick"
+            android:textAllCaps="false"
+            />
 
         <Button
-            android:id="@+id/bank_id"
-            android:layout_width="0dp"
-            android:background="#05e6ed"
-            android:textColor="#fff"
-            android:layout_height="50dp"
-            android:layout_gravity="start"
+            android:id="@+id/atmtBtnID"
             android:layout_weight="1"
-            android:onClick="Bank"
-            android:text="Bank" />
+            android:layout_width="0dp"
+            android:background="#0be1f9"
+            android:textColor="#ffff"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="ATM"
+            />
+
+        <Button
+            android:id="@+id/bankBtnID"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="#0be1f9"
+            android:textColor="#ffff"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="BANK"
+            />
+
 
     </LinearLayout>
 
