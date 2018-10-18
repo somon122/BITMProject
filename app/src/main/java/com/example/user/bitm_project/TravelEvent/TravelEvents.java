@@ -5,16 +5,18 @@ public class TravelEvents {
     String id;
     String distination;
     String budget;
+    String budgetChangeable;
     String fromDate;
     String toDate;
 
     public TravelEvents() {
     }
 
-    public TravelEvents(String id, String distination, String budget, String fromDate, String toDate) {
+    public TravelEvents(String id, String distination, String budget, String budgetChangeable, String fromDate, String toDate) {
         this.id = id;
         this.distination = distination;
         this.budget = budget;
+        this.budgetChangeable = budgetChangeable;
         this.fromDate = fromDate;
         this.toDate = toDate;
     }
@@ -41,6 +43,14 @@ public class TravelEvents {
 
     public void setBudget(String budget) {
         this.budget = budget;
+    }
+
+    public String getBudgetChangeable() {
+        return budgetChangeable;
+    }
+
+    public void setBudgetChangeable(String budgetChangeable) {
+        this.budgetChangeable = budgetChangeable;
     }
 
     public String getFromDate() {

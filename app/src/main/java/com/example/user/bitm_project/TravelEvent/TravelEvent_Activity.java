@@ -39,6 +39,7 @@ public class TravelEvent_Activity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference rootReference;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private DatePickerDialog.OnDateSetListener mDateSetListener2;
 
 
     FirebaseAuth auth;
@@ -77,6 +78,7 @@ public class TravelEvent_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 String destination = destinationET.getText().toString();
                 String budget = budgetET.getText().toString();
+                String budgetChangeable = budgetET.getText().toString();
                 String fromDate = fromDateET.getText().toString();
                 String toDate = toDateET.getText().toString();
 
@@ -88,6 +90,7 @@ public class TravelEvent_Activity extends AppCompatActivity {
                 {
                     budgetET.setError("Please Enter budget");
                 }
+
                 else if (budget.isEmpty())
                 {
                     fromDateET.setError("Please Enter fromDate");
@@ -102,7 +105,7 @@ public class TravelEvent_Activity extends AppCompatActivity {
                         String rootId = user.getUid();
                         String id =rootReference.push().getKey();
 
-                        TravelEvents travelEvents = new TravelEvents(id,destination,budget,fromDate,toDate);
+                        TravelEvents travelEvents = new TravelEvents(id,destination,budget,budgetChangeable,fromDate,toDate);
                         rootReference.child(rootId).child("TravelEvents").child(id).setValue(travelEvents)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -167,7 +170,7 @@ public class TravelEvent_Activity extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog dialog = new DatePickerDialog(TravelEvent_Activity.this,android.R.style.
                         Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,year,month,day);
+                        mDateSetListener2,year,month,day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
@@ -181,7 +184,16 @@ public class TravelEvent_Activity extends AppCompatActivity {
                 String date = dayOfMonth + "/" +month+ "/" +year;
 
                 fromDateET.setText(date);
-                toDateET.setText(date);
+
+            }
+        };
+
+        mDateSetListener2 = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month+1;
+                String date1 = dayOfMonth + "/" +month+ "/" +year;
+                toDateET.setText(date1);
             }
         };
 

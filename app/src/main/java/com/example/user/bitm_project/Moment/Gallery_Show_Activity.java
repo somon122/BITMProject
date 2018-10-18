@@ -23,7 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,6 +39,7 @@ public class Gallery_Show_Activity extends AppCompatActivity {
     private Button shareButton,deleteButton,updateButton;
 
     String uId;
+    String rowId;
     String eventId;
     Intent intent = null,chooser = null;
     MomentGallery momentGallery;
@@ -60,26 +60,34 @@ public class Gallery_Show_Activity extends AppCompatActivity {
         databaseReference = database.getReference("UserInfo");
         listView = findViewById(R.id.listViewGallery_id);
 
-        databaseReference.child(uId).child("MomentGallery").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                momentGalleryList.clear();
+        rowId = getIntent().getStringExtra("rowId");
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+        if (rowId != null){
+            databaseReference.child(uId).child("TravelEvents").child(rowId).child("MomentGallery").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    momentGalleryList.clear();
 
-                    momentGallery =snapshot.getValue(MomentGallery.class);
-                    momentGalleryList.add(momentGallery);
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                        momentGallery =snapshot.getValue(MomentGallery.class);
+                        momentGalleryList.add(momentGallery);
+                    }
+                    adepter = new GalleryAdepter(getApplicationContext(),momentGalleryList);
+                    listView.setAdapter(adepter);
+
                 }
-                adepter = new GalleryAdepter(getApplicationContext(),momentGalleryList);
-                listView.setAdapter(adepter);
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
+
+        }
+
+
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -89,7 +97,7 @@ public class Gallery_Show_Activity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Gallery_Show_Activity.this);
                 View mView = getLayoutInflater().inflate(R.layout.share_delete_update_custom,null);
 
-                shareButton = mView.findViewById(R.id.shareDetails_id);
+                shareButton = mView.findViewById(R.id.expenseRecordShow_id);
                 deleteButton = mView.findViewById(R.id.deleteDetails_id);
                 updateButton = mView.findViewById(R.id.updateDetails_id);
                 updateButton.setVisibility(View.GONE);

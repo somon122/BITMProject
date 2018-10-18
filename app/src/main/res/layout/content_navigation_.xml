@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Navigation_Activity"
-    android:background="#0c3cc9"
+    android:background="#fafafa"
     tools:showIn="@layout/app_bar_navigation_">
 
     <LinearLayout
@@ -32,7 +32,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp" />
                 <TextView
-                    android:textColor="#fff"
+                    android:textColor="#060606"
                     android:layout_gravity="center"
                     android:textSize="20sp"
                     android:text="Travel Event"
@@ -42,6 +42,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -66,12 +67,14 @@
         </LinearLayout>
 
         <LinearLayout
+
             android:layout_marginTop="50dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:visibility="gone"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -91,7 +94,25 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:onClick="Map"
+                    android:src="@drawable/map"
+                    android:layout_margin="10dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp" />
+                <TextView
+                    android:textColor="#0a0909"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:text=" Map "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
+            </LinearLayout>
 
 
             <LinearLayout
@@ -105,7 +126,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp" />
                 <TextView
-                    android:textColor="#fff"
+                    android:textColor="#060606"
                     android:layout_gravity="center"
                     android:textSize="20sp"
                     android:text=" Weather Update "
@@ -125,6 +146,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:visibility="gone"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">

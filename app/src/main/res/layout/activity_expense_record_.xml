@@ -8,17 +8,52 @@
     android:background="#565353"
     android:orientation="vertical"
     tools:context=".ExpenseRecord.ExpenseRecord_Activity">
-
-
-
     <TextView
         android:layout_margin="10dp"
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="Expense Entry "
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="5dp"
+            android:text="RemainingBudget : "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/remainingBudget_id"
+            android:layout_width="152dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="13dp"
+            android:paddingLeft="5dp"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
 
     <EditText
         android:id="@+id/expenseDetails_id"
@@ -49,12 +84,12 @@
         android:id="@+id/expenseEntryRecordButton_id"
         android:textAllCaps="false"
         android:textColor="#030303"
-        android:paddingLeft="5dp"
+        android:padding="5dp"
         android:background="#52b1f1"
         android:text=" Entry Record "
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 

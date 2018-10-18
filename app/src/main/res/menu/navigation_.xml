@@ -4,10 +4,12 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/action_settings"
         app:showAsAction="always" />
 
     <item
+        android:visible="false"
         android:id="@+id/galley_Show_id"
         android:orderInCategory="100"
         android:title="Moment Gallery Show "
@@ -20,6 +22,7 @@
         app:showAsAction="never" />
 
     <item
+        android:visible="false"
         android:id="@+id/expenseRecordShow_id"
         android:orderInCategory="100"
         android:title="Expense Record Show "

@@ -48,7 +48,7 @@ public class GalleryAdepter extends ArrayAdapter<MomentGallery> {
        dateTextView.setText(gallery.getDateTime());
        momentDetailsTextView.setText(gallery.momentDetails);
 
-       Picasso.get().load(gallery.getImageView()).into(momentImageView);
+       Picasso.get().load(gallery.getImageView()).placeholder(R.drawable.ic_launcher_background).into(momentImageView);
 
 
         return convertView;

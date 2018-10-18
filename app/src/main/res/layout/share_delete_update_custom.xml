@@ -2,35 +2,76 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#f1f4f4"
+    android:background="#1a1a1a"
     android:padding="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
         android:id="@+id/updateDetails_id"
-        android:background="#585c5c"
+        android:background="#1a1a1a"
         android:textAllCaps="false"
-        android:text="Update Details"
+        android:textColor="#eef0f1"
+        android:text="Update Event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/deleteDetails_id"
-        android:layout_marginTop="20dp"
         android:textAllCaps="false"
-        android:background="#585c5c"
-        android:text="Delete Details"
+        android:textColor="#f4f5f5"
+        android:background="#1a1a1a"
+        android:text="Delete Event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
+
+
+
+
     <Button
-        android:id="@+id/shareDetails_id"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/expenseDetails_id"
+        android:background="#1a1a1a"
         android:textAllCaps="false"
-        android:background="#585c5c"
-        android:text=" Share Details"
+        android:textColor="#f9f9f9"
+        android:text="Add Expense Record "
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/expenseRecordShow_id"
+        android:textColor="#ebfcff"
+        android:textAllCaps="false"
+        android:background="#1a1a1a"
+        android:text="Expense Record Show "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/momentDetails_id"
+        android:background="#1a1a1a"
+        android:textAllCaps="false"
+        android:text="Add Moment Gallery "
+        android:textColor="#edf0f1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/showMoment_id"
+        android:background="#1a1a1a"
+        android:textAllCaps="false"
+        android:text="Show Moment Gallery"
+        android:textColor="#edf0f1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+
 
 
 </LinearLayout>

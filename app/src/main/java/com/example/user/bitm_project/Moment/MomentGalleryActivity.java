@@ -16,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,8 +43,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.net.URI;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -57,12 +61,12 @@ public class MomentGalleryActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
 
-    private FirebaseDatabase database;
-    private DatabaseReference rootReference;
     private StorageReference mStoreRef;
+    private DatabaseReference mDatabaseRef;
     private FirebaseAuth auth;
+    private String rowId;
     private FirebaseUser user;
-    private Uri selectImage_Uri;
+    private Uri selectImage_Uri = null;
 
     private String stringUri;
 
@@ -79,13 +83,15 @@ public class MomentGalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_moment_gallery);
 
         setTitle("Moment Gallery Page ");
-
-        database = FirebaseDatabase.getInstance();
-        rootReference = database.getReference("UserInfo");
-        mStoreRef = FirebaseStorage.getInstance().getReference("ImageUploads");
-        rootReference.keepSynced(true);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+
+        mStoreRef = FirebaseStorage.getInstance().getReference("uploads");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("UserInfo");
+        mDatabaseRef.keepSynced(true);
+
+        rowId = getIntent().getStringExtra("rowId");
+
         momentDetailsET = findViewById(R.id.momentDetails_id);
         imageView = findViewById(R.id.momentImage_id);
         saveButton = findViewById(R.id.saveMomentButton_id);
@@ -125,61 +131,69 @@ public class MomentGalleryActivity extends AppCompatActivity {
     }
 
     private void SaveTo_FireBase() {
+
+
+        progressDialog.setMessage("Moment Uploading ....");
+        progressDialog.show();
+
         final String momentDetails = momentDetailsET.getText().toString();
-        final String momentImage = imageView.toString();
         if (momentDetails.isEmpty())
         {
             momentDetailsET.setError("Please Enter Moment Details");
-        }else if (momentImage.isEmpty())
+        }else if (!TextUtils.isEmpty((CharSequence) imageView))
         {
             Toast.makeText(MomentGalleryActivity.this, "Please Take a photo ", Toast.LENGTH_SHORT).show();
         }
         else {
             try {
-                progressDialog.show();
-                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                stringUri = selectImage_Uri.toString();
-                String rooId = user.getUid();
-
-                   String id = rootReference.push().getKey();
-                   MomentGallery momentGallery = new MomentGallery(id,currentDateTimeString,momentDetails,stringUri);
-
-                   rootReference.child(rooId).child("MomentGallery").child(id).setValue(momentGallery)
-                           .addOnCompleteListener(new OnCompleteListener<Void>() {
-                               @Override
-                               public void onComplete(@NonNull Task<Void> task) {
-                                   if (task.isSuccessful())
-                                   {
-                                       momentDetailsET.setText("");
-                                       imageView.setImageResource(R.drawable.camara);
-                                       progressDialog.dismiss();
-                                       Toast.makeText(MomentGalleryActivity.this, "Moment Gallery Save Successfully Added ", Toast.LENGTH_SHORT).show();
-                                   }
-                               }
-                           }).addOnFailureListener(new OnFailureListener() {
-                       @Override
-                       public void onFailure(@NonNull Exception e) {
-                           progressDialog.dismiss();
-                           Toast.makeText(MomentGalleryActivity.this, "Moment Gallery Save Field "+"\n"+e.getMessage(), Toast.LENGTH_SHORT).show();
-                       }
-                   });
-
-
-
                    //--------------------------
 
                 if (selectImage_Uri != null) {
-                    StorageReference fileRef = mStoreRef.child(System.currentTimeMillis()
-                            + "." + getFile(selectImage_Uri));
+
+                    StorageReference fileRef = mStoreRef.child(selectImage_Uri.getLastPathSegment());
                     fileRef.putFile(selectImage_Uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(MomentGalleryActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+
+                            Uri downloadUri = taskSnapshot.getUploadSessionUri();
+
+                            stringUri = downloadUri.toString();
+
+
+                            Toast.makeText(MomentGalleryActivity.this, "Image Successful", Toast.LENGTH_SHORT).show();
+                            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+
+                            String rooId = user.getUid();
+
+                            String id = mDatabaseRef.push().getKey();
+                            MomentGallery momentGallery = new MomentGallery(id,currentDateTimeString,momentDetails,stringUri);
+
+                            mDatabaseRef.child(rooId).child("TravelEvents").child(rowId).child("MomentGallery").child(id).setValue(momentGallery)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful())
+                                            {
+                                                momentDetailsET.setText("");
+                                                Toast.makeText(MomentGalleryActivity.this, "Moment Gallery Save Successfully Added ", Toast.LENGTH_SHORT).show();
+                                                progressDialog.dismiss();
+                                                Intent intent = new Intent(MomentGalleryActivity.this, Gallery_Show_Activity.class);
+                                                intent.putExtra("rowId",rowId);
+                                                startActivity(intent);
+                                            }
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(MomentGalleryActivity.this, "Moment Gallery Save Field "+"\n"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+                            });
+
 
                         }
                     });
                 }
-
 
                 ///-------------------------
 
@@ -189,7 +203,6 @@ public class MomentGalleryActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 Toast.makeText(MomentGalleryActivity.this, "LogIn First", Toast.LENGTH_SHORT).show();
             }
-
 
         }
 

@@ -46,6 +46,7 @@ public class ExpenseRecordShow_Activity extends AppCompatActivity {
 
     private Button shareButton,deleteButton,updateButton;
 
+    String rowId;
     String uId;
     String eventId;
     String expenseUpdateId;
@@ -66,11 +67,11 @@ public class ExpenseRecordShow_Activity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         uId = user.getUid();
-
+        rowId = getIntent().getStringExtra("rowId");
 
         listView = findViewById(R.id.listViewExpenseShow_id);
 
-        databaseReference.child(uId).child("ExpenseRecord").addValueEventListener(new ValueEventListener() {
+        databaseReference.child(uId).child("TravelEvents").child(rowId).child("ExpenseRecord").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 expenseRecordList.clear();
@@ -91,7 +92,9 @@ public class ExpenseRecordShow_Activity extends AppCompatActivity {
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+      /*  listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
@@ -99,7 +102,7 @@ public class ExpenseRecordShow_Activity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ExpenseRecordShow_Activity.this);
                 View mView = getLayoutInflater().inflate(R.layout.share_delete_update_custom,null);
 
-                shareButton = mView.findViewById(R.id.shareDetails_id);
+                shareButton = mView.findViewById(R.id.expenseRecordShow_id);
                 deleteButton = mView.findViewById(R.id.deleteDetails_id);
                 updateButton = mView.findViewById(R.id.updateDetails_id);
 
@@ -196,7 +199,7 @@ public class ExpenseRecordShow_Activity extends AppCompatActivity {
             }
         });
 
-
+*/
 
 
 

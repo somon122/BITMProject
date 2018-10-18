@@ -2,6 +2,7 @@ package com.example.user.bitm_project.TravelEvent;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,8 +16,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.user.bitm_project.ExpenseRecord.ExpenseRecordShow_Activity;
+import com.example.user.bitm_project.ExpenseRecord.ExpenseRecord_Activity;
 import com.example.user.bitm_project.Moment.Gallery_Show_Activity;
-import com.example.user.bitm_project.Moment.MomentGallery;
+import com.example.user.bitm_project.Moment.MomentGalleryActivity;
 import com.example.user.bitm_project.Navigation_Activity;
 import com.example.user.bitm_project.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +26,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,20 +38,22 @@ import java.util.ArrayList;
 public class EventShowActivity extends AppCompatActivity {
 
     private ListView listView;
-    private ArrayList<TravelEvents> travelEventsList= new ArrayList<>();
+    private ArrayList<TravelEvents> travelEventsList = new ArrayList<>();
     private TravelEvent_Adapter adepter;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private FirebaseAuth auth;
     private FirebaseUser user;
-    private Button shareButton,deleteButton,updateButton;
+    private Button expenseRecordShowButton, deleteButton, updateButton, expenseButton, momentButton,showMomentButton;
 
     String uId;
     String eventId;
+    String rowId;
     String travelUpdateId;
+    String budget;
 
-    EditText destinationET,budgetET,fromDateET,toDateET;
+    EditText destinationET, budgetET, fromDateET, toDateET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +70,6 @@ public class EventShowActivity extends AppCompatActivity {
         uId = user.getUid();
 
 
-
-
         listView = findViewById(R.id.listView_EventShow_id);
 
         databaseReference.child(uId).child("TravelEvents").addValueEventListener(new ValueEventListener() {
@@ -74,12 +77,12 @@ public class EventShowActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 travelEventsList.clear();
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    TravelEvents travelEvents =snapshot.getValue(TravelEvents.class);
+                    TravelEvents travelEvents = snapshot.getValue(TravelEvents.class);
                     travelEventsList.add(travelEvents);
                 }
-                adepter = new TravelEvent_Adapter(getApplicationContext(),travelEventsList);
+                adepter = new TravelEvent_Adapter(getApplicationContext(), travelEventsList);
                 listView.setAdapter(adepter);
 
             }
@@ -95,15 +98,79 @@ public class EventShowActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
+
+                TravelEvents events = travelEventsList.get(i);
+                rowId = events.getId();
+
                 eventId = travelEventsList.get(i).getId();
                 AlertDialog.Builder builder = new AlertDialog.Builder(EventShowActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.share_delete_update_custom,null);
+                View mView = getLayoutInflater().inflate(R.layout.share_delete_update_custom, null);
 
-                shareButton = mView.findViewById(R.id.shareDetails_id);
+                expenseRecordShowButton = mView.findViewById(R.id.expenseRecordShow_id);
                 deleteButton = mView.findViewById(R.id.deleteDetails_id);
                 updateButton = mView.findViewById(R.id.updateDetails_id);
+                expenseButton = mView.findViewById(R.id.expenseDetails_id);
+                momentButton = mView.findViewById(R.id.momentDetails_id);
+                showMomentButton = mView.findViewById(R.id.showMoment_id);
 
-                shareButton.setVisibility(View.GONE);
+
+
+                expenseButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                       /* databaseReference.child(uId).child("TravelEvents").child(rowId).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                TravelEvents travelEvents1 = dataSnapshot.getValue(TravelEvents.class);
+                                budget = travelEvents1.budgetChangeable;
+                                Toast.makeText(EventShowActivity.this, "budget"+budget, Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });*/
+
+                        Intent intent = new Intent(EventShowActivity.this, ExpenseRecord_Activity.class);
+                        intent.putExtra("rowId",rowId);
+                        startActivity(intent);
+
+                    }
+                });
+
+                expenseRecordShowButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(EventShowActivity.this, ExpenseRecordShow_Activity.class);
+                        intent.putExtra("rowId",rowId);
+                        startActivity(intent);
+
+                    }
+                });
+
+                momentButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(EventShowActivity.this, MomentGalleryActivity.class);
+                        intent.putExtra("rowId",rowId);
+                        startActivity(intent);
+
+                    }
+                });
+
+                showMomentButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(EventShowActivity.this, Gallery_Show_Activity.class);
+                        intent.putExtra("rowId",rowId);
+                        startActivity(intent);
+
+                    }
+                });
+
 
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -111,22 +178,20 @@ public class EventShowActivity extends AppCompatActivity {
 
                         databaseReference.child(uId).child("TravelEvents").child(eventId)
                                 .removeValue();
-                        startActivity(new Intent(EventShowActivity.this,EventShowActivity.class));
+                        startActivity(new Intent(EventShowActivity.this, EventShowActivity.class));
                         finish();
 
                     }
                 });
 
-                updateButton.setOnClickListener(new View.OnClickListener() {
+               /* updateButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
 
-
-
-             AlertDialog.Builder builder = new AlertDialog.Builder(EventShowActivity.this);
-             View mView = getLayoutInflater().inflate(R.layout.custom_update_data,null);
-             Button updateButton = mView.findViewById(R.id.update_createEvent_id);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(EventShowActivity.this);
+                        View mView = getLayoutInflater().inflate(R.layout.custom_update_data, null);
+                        Button updateButton = mView.findViewById(R.id.update_createEvent_id);
 
                         TravelEvents travelEvents = travelEventsList.get(i);
                         travelUpdateId = travelEvents.getId();
@@ -147,26 +212,25 @@ public class EventShowActivity extends AppCompatActivity {
                         toDateET.setText(toDate);
 
 
-
                         updateButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
 
-                                try{
+                                try {
                                     String uDestination = destinationET.getText().toString();
                                     String uBudget = budgetET.getText().toString();
                                     String uFromDate = fromDateET.getText().toString();
                                     String uToDate = toDateET.getText().toString();
 
-                                    TravelEvents travelEvents = new TravelEvents(travelUpdateId,uDestination,uBudget,uFromDate,uToDate);
+                                    TravelEvents travelEvents = new TravelEvents(travelUpdateId, uDestination, uBudget, uFromDate, uToDate);
 
                                     databaseReference.child(uId).child("TravelEvents").child(eventId)
                                             .setValue(travelEvents).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()){
+                                            if (task.isSuccessful()) {
                                                 Toast.makeText(EventShowActivity.this, "Update Successfully", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(EventShowActivity.this,EventShowActivity.class));
+                                                startActivity(new Intent(EventShowActivity.this, EventShowActivity.class));
                                                 finish();
 
                                             }
@@ -178,7 +242,7 @@ public class EventShowActivity extends AppCompatActivity {
                                         }
                                     });
 
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     Toast.makeText(EventShowActivity.this, " Update Field", Toast.LENGTH_SHORT).show();
 
                                 }
@@ -194,19 +258,13 @@ public class EventShowActivity extends AppCompatActivity {
 
                     }
                 });
-
+*/
                 builder.setView(mView);
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
             }
         });
-
-
-
-
-
-
 
 
     }
@@ -242,6 +300,7 @@ public class EventShowActivity extends AppCompatActivity {
         }
         if (id == R.id.expenseRecordShow_id) {
             startActivity(new Intent(EventShowActivity.this, ExpenseRecordShow_Activity.class));
+
 
             return true;
         }
